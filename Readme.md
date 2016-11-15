@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Глеб Воронцов](https://up.htmlacademy.ru/ecmascript/1/user/30117).
-* Наставник: `Неизвестно`.
+* Наставник: `Александр Быков`.
 
 ---
 
