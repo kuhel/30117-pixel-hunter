@@ -3,6 +3,8 @@
 const del = require('del');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const babel = require('gulp-babel');
+const sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -38,6 +40,9 @@ gulp.task('style', function () {
 gulp.task('scripts', function () {
   return gulp.src('js/**/*.js')
     .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('build/js/'));
 });
 
