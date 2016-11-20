@@ -4,6 +4,7 @@ const del = require('del');
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const babel = require('gulp-babel');
+const webpack = require('gulp-webpack');
 const sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
@@ -40,9 +41,17 @@ gulp.task('style', function () {
 gulp.task('scripts', function () {
   return gulp.src('js/**/*.js')
     .pipe(plumber())
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(sourcemaps.write('.'))
+    .pipe(webpack({
+      devtool: 'source-map',
+      module: {
+        loaders: [
+          { test: /\.js$/, loader: 'babel-loader'}
+        ]
+      },
+      output: {
+        filename: 'main.js'
+      }
+    }))
     .pipe(gulp.dest('build/js/'));
 });
 
