@@ -1,16 +1,15 @@
+import {intro} from './templates/intro';
+import {greeting} from './templates/greeting';
+import {rules} from './templates/rules';
+import {gameOne} from './templates/game-1';
+import {gameTwo} from './templates/game-2';
+import {gameThree} from './templates/game-3';
+import {stats} from './templates/stats';
+
 (function () {
 
-  let loadTemplate = (templateName) => {
-    const node = document.createElement('span');
-    const template = document.getElementById(templateName);
-    let content = template.content ? template.content : template;
-    node.appendChild(content);
-    return node.cloneNode(true);
-  };
-
-
   // Rules
-  const rulesElement = loadTemplate('rules');
+  const rulesElement = rules;
   const rulesSubmit = rulesElement.querySelector('.rules__button');
 
   rulesElement.querySelector('.rules__input').oninput = (e) => {
@@ -33,13 +32,13 @@
   mainElement.after(switcher);
 
   const slides = [
-    loadTemplate('intro'),
-    loadTemplate('greeting'),
-    rulesElement,
-    loadTemplate('game-1'),
-    loadTemplate('game-2'),
-    loadTemplate('game-3'),
-    loadTemplate('stats')
+    intro,
+    greeting,
+    rules,
+    gameOne,
+    gameTwo,
+    gameThree,
+    stats
   ];
   let current = -1;
 
@@ -49,17 +48,23 @@
     mainElement.appendChild(slides[index]);
   };
 
-  document.querySelector('.next').onclick = (e) => {
-    e.preventDefault();
+  let nextArrow = document.querySelector('.next');
+  let prevArrow = document.querySelector('.prev');
 
-    select(current + 1);
+  nextArrow.onclick = (e) => {
+    e.preventDefault();
+    if ((current + 1) < slides.length) {
+      select(current + 1);
+    }
   };
 
-  document.querySelector('.prev').onclick = (e) => {
+  prevArrow.onclick = (e) => {
     e.preventDefault();
-
-    select(current - 1);
+    if ((current - 1) >= 0) {
+      select(current - 1);
+    }
   };
+
 
   select(0);
 })();
