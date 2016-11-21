@@ -3,7 +3,7 @@
  */
 import {getElementFromTemplate} from '../modules/getElementFromTemplate';
 
-const statsTemplate = `<header class="header">
+export const stats = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -110,6 +110,4 @@ const statsTemplate = `<header class="header">
         <td colspan="5" class="result__total  result__total--final">950</td>
       </tr>
     </table>
-  </div>`;
-
-export const stats = getElementFromTemplate(statsTemplate);
+  </div>`);

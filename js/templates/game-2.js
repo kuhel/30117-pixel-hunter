@@ -1,9 +1,11 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
+import {gameThree} from './game-3';
+import {renderBlock} from '../modules/renderBlock';
 import {getElementFromTemplate} from '../modules/getElementFromTemplate';
 
-const gameTwoTemplate = `<header class="header">
+export const gameTwo = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -46,6 +48,15 @@ const gameTwoTemplate = `<header class="header">
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>`;
+  </div>`);
 
-export const gameTwo = getElementFromTemplate(gameTwoTemplate);
+const answerBtn = gameTwo.querySelectorAll('.game__answer');
+
+const onClick = (e) => {
+  e.preventDefault();
+  renderBlock(gameThree);
+};
+
+[].forEach.call(answerBtn, function (item) {
+  item.addEventListener('click', onClick);
+});

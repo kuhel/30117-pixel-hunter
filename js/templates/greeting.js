@@ -1,9 +1,11 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
+import {rules} from './rules';
+import {renderBlock} from '../modules/renderBlock';
 import {getElementFromTemplate} from '../modules/getElementFromTemplate';
 
-const greetingTemplate = `<div class="greeting  central--blur">
+export const greeting = getElementFromTemplate(`<div class="greeting  central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>
     <div class="greeting__challenge">
@@ -15,6 +17,14 @@ const greetingTemplate = `<div class="greeting  central--blur">
         Помни, главное — смотреть очень внимательно.</p>
     </div>
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
-  </div>`;
+  </div>`);
 
-export const greeting = getElementFromTemplate(greetingTemplate);
+const onClick = (e) => {
+  e.preventDefault();
+  renderBlock(rules);
+};
+
+const greetingElement = greeting.querySelector('.greeting__continue');
+
+greetingElement.addEventListener('click', onClick);
+

@@ -7,5 +7,5 @@
 export const getElementFromTemplate = (elementString, containerType = 'div') => {
   const container = document.createElement(containerType);
   container.innerHTML = elementString;
-  return container;
+  return container.cloneNode(true);
 };
