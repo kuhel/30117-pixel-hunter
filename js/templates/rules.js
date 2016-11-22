@@ -1,11 +1,11 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {gameOne} from './game-1';
-import {renderBlock} from '../modules/renderBlock';
-import {getElementFromTemplate} from '../modules/getElementFromTemplate';
+import gameOne from './game-1';
+import renderBlock from '../modules/renderBlock';
+import getElementFromTemplate from '../modules/getElementFromTemplate';
 
-export const rules = getElementFromTemplate(`<header class="header">
+const rules = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -48,3 +48,4 @@ const onInput = (e) => {
 rulesSubmit.addEventListener('click', onClick);
 rulesInput.addEventListener('change', onInput);
 
+export default rules;

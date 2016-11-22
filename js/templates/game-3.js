@@ -1,11 +1,11 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {stats} from './stats';
-import {renderBlock} from '../modules/renderBlock';
-import {getElementFromTemplate} from '../modules/getElementFromTemplate';
+import stats from './stats';
+import renderBlock from '../modules/renderBlock';
+import getElementFromTemplate from '../modules/getElementFromTemplate';
 
-export const gameThree = getElementFromTemplate(`<header class="header">
+const gameThree = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -51,7 +51,6 @@ export const gameThree = getElementFromTemplate(`<header class="header">
 const answerBtn = gameThree.querySelectorAll('.game__option');
 
 const onClick = (e) => {
-  e.preventDefault();
   renderBlock(stats);
 };
 
@@ -59,4 +58,4 @@ const onClick = (e) => {
   item.addEventListener('click', onClick);
 });
 
-
+export default gameThree;

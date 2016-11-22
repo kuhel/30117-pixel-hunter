@@ -1,9 +1,9 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {greeting} from './greeting';
-import {renderBlock} from '../modules/renderBlock';
-import {getElementFromTemplate} from '../modules/getElementFromTemplate';
+import greeting from './greeting';
+import renderBlock from '../modules/renderBlock';
+import getElementFromTemplate from '../modules/getElementFromTemplate';
 
 const intro = getElementFromTemplate(`<div id="intro" class="intro">
       <h1 class="intro__asterisk">*</h1>
@@ -13,7 +13,6 @@ const intro = getElementFromTemplate(`<div id="intro" class="intro">
 const introAsteriskElement = intro.querySelector('.intro__asterisk');
 
 const onClick = (e) => {
-  e.preventDefault();
   renderBlock(greeting);
 };
 

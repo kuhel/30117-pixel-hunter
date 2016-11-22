@@ -4,8 +4,10 @@
  * @param {String} parentNodeId Optional parameter — ID of a node where block will be rendered
  */
 
-export const renderBlock = (block, parentNodeId = 'main') => {
+const renderBlock = (block, parentNodeId = 'main') => {
   const parentNode = document.getElementById(parentNodeId);
   parentNode.innerHTML = '';
   return parentNode.appendChild(block);
 };
+
+export default renderBlock;

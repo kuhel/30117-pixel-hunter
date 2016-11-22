@@ -1,9 +1,9 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {getElementFromTemplate} from '../modules/getElementFromTemplate';
+import getElementFromTemplate from '../modules/getElementFromTemplate';
 
-export const stats = getElementFromTemplate(`<header class="header">
+const stats = getElementFromTemplate(`<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -111,3 +111,6 @@ export const stats = getElementFromTemplate(`<header class="header">
       </tr>
     </table>
   </div>`);
+
+
+export default stats;
