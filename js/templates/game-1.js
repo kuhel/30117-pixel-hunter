@@ -1,7 +1,7 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {gameOneStats, gameContainerFirst} from '../data/gameData'
+import {gameOneStats, gameContainerFirst} from '../data/gameData';
 import header from './components/header';
 import stats from './components/stats';
 import gameTwo from './game-2';
@@ -22,7 +22,7 @@ const gameOneMarkup = (gameData) => {
     `).join('\n')}
   </div>
   `).join('\n')}
-</form>`
+</form>`;
 };
 
 const gameOne = getElementFromTemplate(`${header}

@@ -1,7 +1,7 @@
 /**
  * Created by glebvorontsov on 27/11/16.
  */
-import { headerData } from '../../data/gameData';
+import {headerData} from '../../data/gameData';
 
 const header = `<header class="header">
     <div class="header__back">

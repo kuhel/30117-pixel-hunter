@@ -1,7 +1,7 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {gameOneStats, gameTwoStats, gameThreeStats} from '../data/gameData'
+import {gameOneStats, gameTwoStats, gameThreeStats} from '../data/gameData';
 import header from './components/header';
 import stats from './components/stats';
 import getElementFromTemplate from '../modules/getElementFromTemplate';

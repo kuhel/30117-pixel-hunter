@@ -1,7 +1,6 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import header from './components/header';
 import gameOne from './game-1';
 import renderBlock from '../modules/renderBlock';
 import getElementFromTemplate from '../modules/getElementFromTemplate';
@@ -41,7 +40,7 @@ const rulesInput = rules.querySelector('.rules__input');
 
 rulesSubmit.addEventListener('click', (e) => {
   e.preventDefault();
-renderBlock(gameOne);
+  renderBlock(gameOne);
 });
 rulesInput.addEventListener('change', (e) => {
   if (e.target.value) {

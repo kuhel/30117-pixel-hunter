@@ -2,8 +2,8 @@
  * Created by glebvorontsov on 26/11/16.
  */
 export const headerData = {
-    headerTimer: 'NN',
-    lives: ['empty', 'full', 'full']
+  headerTimer: 'NN',
+  lives: ['empty', 'full', 'full']
 };
 
 export const gameContainerFirst = {

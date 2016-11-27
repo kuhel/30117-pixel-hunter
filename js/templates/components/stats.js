@@ -7,13 +7,13 @@ const stats = (statsData) => {
   if (statsData.length === 0) {
     return `<div class="stats">
       <h3>There is no stats</h3>
-    </div>`
+    </div>`;
   }
   return `<div class="stats">
       <ul class="stats">
         ${statsData.map((stat) => `<li class="stats__result ${stat}"></li>`).join('\n')}
       </ul>
-    </div>`
-}
+    </div>`;
+};
 
 export default stats;

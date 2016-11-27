@@ -2,7 +2,7 @@
  * Created by glebvorontsov on 20/11/16.
  */
 import statsPage from './stats';
-import {gameThreeStats, gameContainerThird} from '../data/gameData'
+import {gameThreeStats, gameContainerThird} from '../data/gameData';
 import header from './components/header';
 import stats from './components/stats';
 import renderBlock from '../modules/renderBlock';
