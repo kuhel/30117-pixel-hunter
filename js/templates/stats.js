@@ -1,34 +1,19 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
+import {gameOneStats, gameTwoStats, gameThreeStats} from '../data/gameData'
+import header from './components/header';
+import stats from './components/stats';
 import getElementFromTemplate from '../modules/getElementFromTemplate';
 
-const stats = getElementFromTemplate(`<header class="header">
-    <div class="header__back">
-      <span class="back">
-        <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-        <img src="img/logo_small.png" width="101" height="44">
-      </span>
-    </div>
-  </header>
+const statsPage = getElementFromTemplate(`${header}
   <div class="result">
     <h1>Победа!</h1>
     <table class="result__table">
       <tr>
         <td class="result__number">1.</td>
         <td colspan="2">
-          <ul class="stats">
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--correct"></li>
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--unknown"></li>
-          </ul>
+          ${stats(gameOneStats)}
         </td>
         <td class="result__points">×&nbsp;100</td>
         <td class="result__total">900</td>
@@ -62,18 +47,7 @@ const stats = getElementFromTemplate(`<header class="header">
       <tr>
         <td class="result__number">2.</td>
         <td>
-          <ul class="stats">
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--correct"></li>
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--wrong"></li>
-          </ul>
+          ${stats(gameTwoStats)}
         </td>
         <td class="result__total"></td>
         <td class="result__total  result__total--final">fail</td>
@@ -83,18 +57,7 @@ const stats = getElementFromTemplate(`<header class="header">
       <tr>
         <td class="result__number">3.</td>
         <td colspan="2">
-          <ul class="stats">
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--correct"></li>
-            <li class="stats__result stats__result--wrong"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--slow"></li>
-            <li class="stats__result stats__result--unknown"></li>
-            <li class="stats__result stats__result--fast"></li>
-            <li class="stats__result stats__result--unknown"></li>
-          </ul>
+          ${stats(gameThreeStats)}
         </td>
         <td class="result__points">×&nbsp;100</td>
         <td class="result__total">900</td>
@@ -113,4 +76,4 @@ const stats = getElementFromTemplate(`<header class="header">
   </div>`);
 
 
-export default stats;
+export default statsPage;
