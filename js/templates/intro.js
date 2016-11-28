@@ -5,18 +5,26 @@ import greeting from './greeting';
 import renderBlock from '../modules/renderBlock';
 import getElementFromTemplate from '../modules/getElementFromTemplate';
 
-const intro = getElementFromTemplate(`<div id="intro" class="intro">
-      <h1 class="intro__asterisk">*</h1>
-      <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf
-        Sparnaay.</p>
-    </div>`);
-const introAsteriskElement = intro.querySelector('.intro__asterisk');
-
-const onClick = (e) => {
-  renderBlock(greeting);
+const content = {
+  asteriskContent: '*',
+  asteriskClassName: 'intro__asterisk',
+  mottoContent: '<sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.',
+  mottoClassName: 'intro__motto'
 };
 
-introAsteriskElement.addEventListener('click', onClick);
+const introConstructor = {
+  asteriskContainer: `<h1 class="${content.asteriskClassName}">${content.asteriskContent}</h1>`,
+  mottoContainer: `<p class="${content.mottoClassName}">${content.mottoContent}</p>`
+};
 
+const intro = getElementFromTemplate(`<div id="intro" class="intro">
+      ${introConstructor.asteriskContainer}
+      ${introConstructor.mottoContainer}
+    </div>`);
+
+
+intro.addEventListener('click', () => {
+  renderBlock(greeting);
+});
 
 export default intro;

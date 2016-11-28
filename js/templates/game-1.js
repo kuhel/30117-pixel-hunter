@@ -1,74 +1,40 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
+import {gameOneStats, gameContainerFirst} from '../data/gameData';
+import header from './components/header';
+import stats from './components/stats';
 import gameTwo from './game-2';
 import renderBlock from '../modules/renderBlock';
 import getElementFromTemplate from '../modules/getElementFromTemplate';
 
-const gameOne = getElementFromTemplate(`<header class="header">
-    <div class="header__back">
-        <span class="back">
-          <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-          <img src="img/logo_small.png" width="101" height="44">
-        </span>
-    </div>
-    <h1 class="game__timer">NN</h1>
-    <div class="game__lives">
-      <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
-    </div>
-  </header>
+const gameOneMarkup = (gameData) => {
+  return `<p class="game__task">${gameData.gameTask}</p>
+<form class="game__content">
+  ${gameData.gameOptions.map((option, i) => `
+  <div class="game__option">
+    <img src="${option.gamePic}" alt="Option ${i + 1}" width="468" height="458">
+    ${option.gameAnswers.map((answer) => `
+    <label class="game__answer game__answer--${answer.gameAnswerValue}">
+    <input name="question${i + 1}" type="radio" value="${answer.gameAnswerValue}">
+    <span>${answer.gameAnswerTitle}</span>
+    </label>
+    `).join('\n')}
+  </div>
+  `).join('\n')}
+</form>`;
+};
+
+const gameOne = getElementFromTemplate(`${header}
   <div class="game">
-    <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
-    <form class="game__content">
-      <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-        <label class="game__answer game__answer--photo">
-          <input name="question1" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer game__answer--paint">
-          <input name="question1" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
-      <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-        <label class="game__answer  game__answer--photo">
-          <input name="question2" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer  game__answer--paint">
-          <input name="question2" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
-    </form>
-    <div class="stats">
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
-    </div>
+    ${gameOneMarkup(gameContainerFirst)}
+    ${stats(gameOneStats)}
   </div>`);
 
 const answerBtn = gameOne.querySelectorAll('.game__answer');
 
-const onClick = (e) => {
-  renderBlock(gameTwo);
-};
-
 [].forEach.call(answerBtn, function (item) {
-  item.addEventListener('click', onClick);
+  item.addEventListener('click', () => renderBlock(gameTwo));
 });
 
 export default gameOne;
