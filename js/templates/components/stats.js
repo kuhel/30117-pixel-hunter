@@ -4,7 +4,7 @@
  * @return {String} HTML markup for stats
  */
 const stats = (statsData) => {
-  if (statsData.length === 0) {
+  if (!statsData.length) {
     return `<div class="stats">
       <h3>There is no stats</h3>
     </div>`;

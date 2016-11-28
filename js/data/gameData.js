@@ -95,7 +95,7 @@ export const stats = {
   unkown: 'stats__result--unknown'
 };
 
-export let gameOneStats = [
+export const gameOneStats = [
   stats.wrong,
   stats.slow,
   stats.fast,
@@ -108,7 +108,7 @@ export let gameOneStats = [
   stats.unkown
 ];
 
-export let gameTwoStats = [
+export const gameTwoStats = [
   stats.wrong,
   stats.slow,
   stats.fast,
@@ -121,7 +121,7 @@ export let gameTwoStats = [
   stats.unkown
 ];
 
-export let gameThreeStats = [
+export const gameThreeStats = [
   stats.wrong,
   stats.slow,
   stats.fast,
