@@ -92,44 +92,44 @@ export const stats = {
   wrong: 'stats__result--wrong',
   fast: 'stats__result--fast',
   slow: 'stats__result--slow',
-  unkown: 'stats__result--unknown'
+  unknown: 'stats__result--unknown'
 };
 
-export const gameOneStats = [
+export let gameOneStats = [
   stats.wrong,
   stats.slow,
   stats.fast,
   stats.correct,
-  stats.unkown,
-  stats.unkown,
-  stats.unkown,
-  stats.unkown,
-  stats.unkown,
-  stats.unkown
+  stats.unknown,
+  stats.unknown,
+  stats.unknown,
+  stats.unknown,
+  stats.unknown,
+  stats.unknown
 ];
 
-export const gameTwoStats = [
+export let gameTwoStats = [
   stats.wrong,
   stats.slow,
   stats.fast,
   stats.correct,
   stats.wrong,
-  stats.unkown,
+  stats.unknown,
   stats.slow,
-  stats.unkown,
+  stats.unknown,
   stats.fast,
-  stats.unkown
+  stats.unknown
 ];
 
-export const gameThreeStats = [
+export let gameThreeStats = [
   stats.wrong,
   stats.slow,
   stats.fast,
   stats.correct,
   stats.wrong,
-  stats.unkown,
+  stats.unknown,
   stats.slow,
-  stats.unkown,
+  stats.unknown,
   stats.fast,
-  stats.unkown
+  stats.unknown
 ];
