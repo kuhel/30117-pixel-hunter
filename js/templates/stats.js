@@ -1,19 +1,18 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {gameOneStats, gameTwoStats, gameThreeStats} from '../data/gameData';
 import header from './components/header';
-import stats from './components/stats';
+import statsRender from './components/stats';
 import getElementFromTemplate from '../modules/getElementFromTemplate';
-
-const statsPage = getElementFromTemplate(`${header}
+export default (stats) => {
+  const statsPage = getElementFromTemplate(`${header}
   <div class="result">
     <h1>Победа!</h1>
     <table class="result__table">
       <tr>
         <td class="result__number">1.</td>
         <td colspan="2">
-          ${stats(gameOneStats)}
+          ${statsRender(stats[0])}
         </td>
         <td class="result__points">×&nbsp;100</td>
         <td class="result__total">900</td>
@@ -47,7 +46,7 @@ const statsPage = getElementFromTemplate(`${header}
       <tr>
         <td class="result__number">2.</td>
         <td>
-          ${stats(gameTwoStats)}
+          ${statsRender(stats[1])}
         </td>
         <td class="result__total"></td>
         <td class="result__total  result__total--final">fail</td>
@@ -57,7 +56,7 @@ const statsPage = getElementFromTemplate(`${header}
       <tr>
         <td class="result__number">3.</td>
         <td colspan="2">
-          ${stats(gameThreeStats)}
+          ${statsRender(stats[2])}
         </td>
         <td class="result__points">×&nbsp;100</td>
         <td class="result__total">900</td>
@@ -75,5 +74,5 @@ const statsPage = getElementFromTemplate(`${header}
     </table>
   </div>`);
 
-
-export default statsPage;
+  return statsPage;
+}

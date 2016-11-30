@@ -6,7 +6,7 @@ export const headerData = {
   lives: ['empty', 'full', 'full']
 };
 
-export const gameContainerFirst = {
+export const gameOneData = {
   gameTask: 'Угадайте для каждого изображения фото или рисунок?',
   gameOptions: [
     {
@@ -44,7 +44,7 @@ export const gameContainerFirst = {
   ]
 };
 
-export const gameContainerSecond = {
+export const gameTwoData = {
   gameTask: 'Угадай, фото или рисунок?',
   gameOptions: [
     {
@@ -66,7 +66,7 @@ export const gameContainerSecond = {
   ]
 };
 
-export const gameContainerThird = {
+export const gameThreeData = {
   gameTask: 'Найдите рисунок среди изображений',
   gameOptions: [
     {
@@ -95,41 +95,43 @@ export const stats = {
   unknown: 'stats__result--unknown'
 };
 
-export let gameOneStats = [
-  stats.wrong,
-  stats.slow,
-  stats.fast,
-  stats.correct,
-  stats.unknown,
-  stats.unknown,
-  stats.unknown,
-  stats.unknown,
-  stats.unknown,
-  stats.unknown
-];
+export let allGameStats = [
+  [
+    stats.wrong,
+    stats.slow,
+    stats.fast,
+    stats.correct,
+    stats.unknown,
+    stats.unknown,
+    stats.unknown,
+    stats.unknown,
+    stats.unknown,
+    stats.unknown
+  ],
 
-export let gameTwoStats = [
-  stats.wrong,
-  stats.slow,
-  stats.fast,
-  stats.correct,
-  stats.wrong,
-  stats.unknown,
-  stats.slow,
-  stats.unknown,
-  stats.fast,
-  stats.unknown
-];
+  [
+    stats.wrong,
+    stats.slow,
+    stats.fast,
+    stats.correct,
+    stats.wrong,
+    stats.unknown,
+    stats.slow,
+    stats.unknown,
+    stats.fast,
+    stats.unknown
+  ],
 
-export let gameThreeStats = [
-  stats.wrong,
-  stats.slow,
-  stats.fast,
-  stats.correct,
-  stats.wrong,
-  stats.unknown,
-  stats.slow,
-  stats.unknown,
-  stats.fast,
-  stats.unknown
-];
+  [
+    stats.wrong,
+    stats.slow,
+    stats.fast,
+    stats.correct,
+    stats.wrong,
+    stats.unknown,
+    stats.slow,
+    stats.unknown,
+    stats.fast,
+    stats.unknown
+  ]
+]
