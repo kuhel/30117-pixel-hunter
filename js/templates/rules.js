@@ -1,8 +1,8 @@
 /**
  * Created by glebvorontsov on 20/11/16.
  */
-import {gameOneData, allGameStats} from '../data/gameData';
-import gameOne from './game-1';
+import {allGameData} from '../data/gameData';
+import gameRender from './gameRender';
 import renderBlock from '../modules/renderBlock';
 import getElementFromTemplate from '../modules/getElementFromTemplate';
 
@@ -30,15 +30,14 @@ export default (data) => {
 
   rulesSubmit.addEventListener('click', (e) => {
     e.preventDefault();
-    renderBlock(gameOne(gameOneData, allGameStats[0]));
+    renderBlock(gameRender(allGameData));
   });
-    rulesInput.addEventListener('change', (e) => {
-      if (e.target.value) {
+  rulesInput.addEventListener('change', (e) => {
+    if (e.target.value) {
       rulesSubmit.removeAttribute('disabled');
     } else {
       rulesSubmit.setAttribute('disabled', '');
     }
   });
-
   return rules;
-}
+};

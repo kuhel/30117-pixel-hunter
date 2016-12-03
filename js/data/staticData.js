@@ -28,3 +28,11 @@ export const greetingData = {
         Фотореализм обманчив и коварен.<br>
         Помни, главное — смотреть очень внимательно.`
 };
+
+export const statsClassNames = {
+  correct: 'stats__result--correct',
+  wrong: 'stats__result--wrong',
+  fast: 'stats__result--fast',
+  slow: 'stats__result--slow',
+  unknown: 'stats__result--unknown'
+};

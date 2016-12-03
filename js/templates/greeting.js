@@ -22,4 +22,4 @@ export default (data) => {
   greetingElement.addEventListener('click', () => renderBlock(rules(rulesData)));
 
   return greeting;
-}
+};
