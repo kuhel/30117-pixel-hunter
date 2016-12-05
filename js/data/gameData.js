@@ -7,7 +7,15 @@ export const headerData = {
   lives: ['empty', 'full', 'full']
 };
 
-export let allGameData = [
+export const gameData = {
+  level: 0,
+  lives: 3,
+  stats: [],
+  time: 0,
+  points: 0
+};
+
+export let gameLevels = [
   {
     gameTask: 'Угадайте для каждого изображения фото или рисунок?',
     gameOptions: [
@@ -24,19 +32,6 @@ export let allGameData = [
             gameAnswerTitle: 'Рисунок',
             isAnswer: true
           }
-        ],
-        chose: false,
-        stats: [
-          statsClassNames.wrong,
-          statsClassNames.slow,
-          statsClassNames.fast,
-          statsClassNames.correct,
-          statsClassNames.unknown,
-          statsClassNames.unknown,
-          statsClassNames.unknown,
-          statsClassNames.unknown,
-          statsClassNames.unknown,
-          statsClassNames.unknown
         ]
       },
       {
@@ -52,22 +47,10 @@ export let allGameData = [
             gameAnswerTitle: 'Рисунок',
             isAnswer: true
           }
-        ],
-        chose: false
+        ]
       }
     ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
+    time: 0,
   },
   {
     gameTask: 'Угадай, фото или рисунок?',
@@ -85,334 +68,37 @@ export let allGameData = [
             gameAnswerTitle: 'Рисунок',
             isAnswer: true
           }
-        ],
-        chose: false
+        ]
       }
     ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
+    time: 0
   },
   {
     gameTask: 'Найдите рисунок среди изображений',
     gameOptions: [
       {
         gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: false
+        gameAnswers: []
       },
       {
         gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: true
+        gameAnswers: []
       },
       {
         gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: false
+        gameAnswers: []
       }
     ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
-  },
-  {
-    gameTask: 'Угадайте для каждого изображения фото или рисунок?',
-    gameOptions: [
-      {
-        gamePic: 'http://placehold.it/468x458',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      },
-      {
-        gamePic: 'http://placehold.it/468x458',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      }
-    ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
-  },
-  {
-    gameTask: 'Угадай, фото или рисунок?',
-    gameOptions: [
-      {
-        gamePic: 'http://placehold.it/705x455',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      }
-    ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
-  },
-  {
-    gameTask: 'Найдите рисунок среди изображений',
-    gameOptions: [
-      {
-        gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: false
-      },
-      {
-        gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: true
-      },
-      {
-        gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: false
-      }
-    ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
-  },
-  {
-    gameTask: 'Угадайте для каждого изображения фото или рисунок?',
-    gameOptions: [
-      {
-        gamePic: 'http://placehold.it/468x458',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      },
-      {
-        gamePic: 'http://placehold.it/468x458',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      }
-    ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
-  },
-  {
-    gameTask: 'Угадай, фото или рисунок?',
-    gameOptions: [
-      {
-        gamePic: 'http://placehold.it/705x455',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      }
-    ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
-  },
-  {
-    gameTask: 'Найдите рисунок среди изображений',
-    gameOptions: [
-      {
-        gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: false
-      },
-      {
-        gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: true
-      },
-      {
-        gamePic: 'http://placehold.it/304x455',
-        gameAnswers: [],
-        chosen: false
-      }
-    ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
-  },
-  {
-    gameTask: 'Угадайте для каждого изображения фото или рисунок?',
-    gameOptions: [
-      {
-        gamePic: 'http://placehold.it/468x458',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      },
-      {
-        gamePic: 'http://placehold.it/468x458',
-        gameAnswers: [
-          {
-            gameAnswerValue: 'photo',
-            gameAnswerTitle: 'Фото',
-            isAnswer: false
-          },
-          {
-            gameAnswerValue: 'paint',
-            gameAnswerTitle: 'Рисунок',
-            isAnswer: true
-          }
-        ],
-        chose: false
-      }
-    ],
-    stats: [
-      statsClassNames.wrong,
-      statsClassNames.slow,
-      statsClassNames.fast,
-      statsClassNames.correct,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown,
-      statsClassNames.unknown
-    ]
+    time: 0
   }
-
 ];
+
+
+export const ANSWER_TIME = {
+  TOTAL: 30,
+  FAST: 10,
+  SLOW: 20
+};
 
 export let allGameStats = [
   [
