@@ -1,12 +1,27 @@
 /**
  * Created by glebvorontsov on 05/12/16.
  */
-import {gameLevels, ANSWER_TIME} from './gameData';
+import {gameLevels} from './gameData';
+import {ANSWER_TIME, STATS_TYPES} from './staticData';
 
 export const initialGame = {
   level: 0,
   lives: 3,
-  time: 0
+  stats: [
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN
+  ],
+  time: 0,
+  points: 0,
+  forTheWin: false
 };
 
 /**
@@ -75,3 +90,32 @@ export const getLevel = (num) => {
 
   return gameLevels[num];
 };
+
+
+export const pushStatsResult = (state, result, number) => {
+  if (result !== 'correct' && result !== 'wrong' && result !== 'fast' && result !== 'slow') {
+    throw new Error('Value should be from white-list');
+  }
+  if (number < 0) {
+    throw new RangeError('Value should not be negative');
+  }
+  if (number >= state.stats.length) {
+    throw new RangeError('Value should not be more than stats quantity');
+  }
+  let _state = state;
+  const _stats = state.stats.slice(0);
+
+  _stats[number] = result;
+  _state.stats = statsToUpdate;
+  return JSON.parse(JSON.stringify(_state));
+};
+
+export const setFinalResult = (state, result) => {
+  if (typeof result !== 'boolean') {
+    throw new Error('Value should be boolean');
+  }
+
+  let _state = state;
+  _state.result = result;
+  return JSON.parse(JSON.stringify(_state));
+}
