@@ -10,7 +10,6 @@ export default class TwoQuestionView extends AbstractView {
     this._question = question;
     this._stats = stats;
     this.statsView = new StatsComponent(this._stats);
-    this.bindHandlers();
   }
 
   set onAnswer(handler) {
@@ -30,7 +29,7 @@ export default class TwoQuestionView extends AbstractView {
               <input name="question${i + 1}" type="radio" value="${answer.gameAnswerValue}">
               <span>${answer.gameAnswerTitle}</span>
             </label>`).join('\n')}
-        </div>`).join('\n')};
+        </div>`).join('\n')}
       </form>
       ${this.statsView.getMarkup()}
     </div>`;
@@ -39,14 +38,13 @@ export default class TwoQuestionView extends AbstractView {
   bindHandlers() {
     const answerBtn = this.element.querySelectorAll('.game__answer');
     let chosenAnswers = null;
-    const self = this;
-    [].forEach.call(answerBtn, function (btn) {
+    [].forEach.call(answerBtn, (btn) => {
       btn.addEventListener('click', () => {
         chosenAnswers = document.querySelectorAll('input:checked');
         if (chosenAnswers.length === 2) {
-          self._onAnswer(chosenAnswers);
+          this._onAnswer(this.isAnswer(chosenAnswers));
         }
-      })
+      });
     });
   }
 

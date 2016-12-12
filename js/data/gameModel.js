@@ -1,7 +1,7 @@
 /**
  * Created by glebvorontsov on 05/12/16.
  */
-import {initialGame, hasLevel, setCurrentLevel, setLives, getLevel, setTime, pushStatsResult} from './game';
+import {initialGame, hasLevel, setCurrentLevel, setLives, getLevel, setTime, pushStatsResult, setFinalResult} from './game';
 import {STATS_TYPES, ANSWER_TIME} from './staticData';
 
 class GameModel {
@@ -47,20 +47,26 @@ class GameModel {
   }
 
   isTimeRanOut() {
-    return this._state.timer <= 0;
+    return this._state.time <= 0;
   }
 
   setStats(result) {
     if (result && initialGame.time - this._state.time < ANSWER_TIME.FAST) {
-      this._state = pushStatsResult(this._state, STATS_TYPES.FAST, this._state.question);
+      this._state = pushStatsResult(this._state, STATS_TYPES.FAST, this._state.level);
     } else if (result && initialGame.timer - this._state.timer > ANSWER_TIME.SLOW) {
-      this._state = pushStatsResult(this._state, STATS_TYPES.SLOW, this._state.question);
+      this._state = pushStatsResult(this._state, STATS_TYPES.SLOW, this._state.level);
     } else if (result) {
-      this._state = pushStatsResult(this._state, STATS_TYPES.CORRECT, this._state.question);
+      this._state = pushStatsResult(this._state, STATS_TYPES.CORRECT, this._state.level);
     } else {
-      this._state = pushStatsResult(this._state, STATS_TYPES.WRONG, this._state.question);
+      this._state = pushStatsResult(this._state, STATS_TYPES.WRONG, this._state.level);
     }
   }
+
+  setGameResult() {
+    const result = this.isDead();
+    this._state = setFinalResult(this._state, result);
+  }
+
 }
 
 export default new GameModel();

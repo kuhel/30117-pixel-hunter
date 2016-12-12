@@ -10,7 +10,6 @@ class GreetingScreen extends AbstractView {
   constructor(data) {
     super();
     this._data = data;
-    this.bindHandlers();
   }
 
   getMarkup() {

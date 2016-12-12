@@ -93,7 +93,7 @@ export const getLevel = (num) => {
 
 
 export const pushStatsResult = (state, result, number) => {
-  if (result !== 'correct' && result !== 'wrong' && result !== 'fast' && result !== 'slow') {
+  if (result !== STATS_TYPES.CORRECT && result !== STATS_TYPES.WRONG && result !== STATS_TYPES.FAST && result !== STATS_TYPES.SLOW) {
     throw new Error('Value should be from white-list');
   }
   if (number < 0) {
@@ -106,7 +106,7 @@ export const pushStatsResult = (state, result, number) => {
   const _stats = state.stats.slice(0);
 
   _stats[number] = result;
-  _state.stats = statsToUpdate;
+  _state.stats = _stats;
   return JSON.parse(JSON.stringify(_state));
 };
 
@@ -116,6 +116,6 @@ export const setFinalResult = (state, result) => {
   }
 
   let _state = state;
-  _state.result = result;
+  _state.forTheWin = result;
   return JSON.parse(JSON.stringify(_state));
-}
+};

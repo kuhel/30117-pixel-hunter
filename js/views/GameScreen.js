@@ -55,7 +55,7 @@ class GamePresenter {
   changeQuestion() {
     this.updateHeader();
     const question = new QuestionView(GameModel.getCurrentLevel(), GameModel.state);
-    question.onAnswer = this.onAnswer;
+    question.onAnswer = this.onAnswer.bind(this);
     this.changeContentView(question);
   }
 
@@ -68,6 +68,10 @@ class GamePresenter {
     }
   }
 
+  isDead() {
+    return this._state.lives <= 0;
+  }
+
   exitGame() {
     GameModel.setGameResult();
     statsScreenRender(GameModel.state);
@@ -78,7 +82,7 @@ class GamePresenter {
     if (!result) {
       GameModel.die();
     }
-    GameModel.updateStats(result);
+    GameModel.setStats(result);
     this.changeView();
   }
 
@@ -93,7 +97,6 @@ class GamePresenter {
     this.root.replaceChild(header.element, this.header.element);
     this.header = header;
   }
-
 }
 
 const game = new GamePresenter();

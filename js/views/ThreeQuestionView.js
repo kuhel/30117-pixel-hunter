@@ -10,7 +10,6 @@ export default class ThreeQuestionView extends AbstractView {
     this._question = question;
     this._stats = stats;
     this.statsView = new StatsComponent(this._stats);
-    this.bindHandlers();
   }
 
   set onAnswer(handler) {
@@ -32,14 +31,15 @@ export default class ThreeQuestionView extends AbstractView {
   }
 
   bindHandlers() {
-    const answerBtn = this.element.querySelector('.game__option');
-    const self = this;
-    [].forEach.call(answerBtn, function (item) {
-      self._onAnswer(event.currentTarget);
+    const answerBtns = this.element.querySelectorAll('.game__option');
+    [].forEach.call(answerBtns, (item) => {
+      item.addEventListener('click', (evt) => {
+        this._onAnswer(this.isAnswer(evt.currentTarget));
+      });
     });
   }
 
   isAnswer(node) {
-    return node.childNodes[0].dataset.answer === this._question.answer;
+    return node.children[0].dataset.answer === this._question.answer;
   }
 }

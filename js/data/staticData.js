@@ -46,7 +46,7 @@ export const STATS_TYPES = {
 };
 
 export const ANSWER_TIME = {
-  TOTAL: 300,
+  TOTAL: 30,
   FAST: 10,
   SLOW: 20
 };

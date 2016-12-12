@@ -142,5 +142,36 @@ export let gameLevels = [
       STATS_TYPES.UNKNOWN,
       STATS_TYPES.UNKNOWN
     ]
+  },
+  {
+    gameTask: 'Найдите рисунок среди изображений',
+    gameOptions: [
+      {
+        gamePic: 'http://placehold.it/304x455',
+        gameAnswers: []
+      },
+      {
+        gamePic: 'http://placehold.it/304x455',
+        gameAnswers: []
+      },
+      {
+        gamePic: 'http://placehold.it/304x455',
+        gameAnswers: []
+      }
+    ],
+    answer: 1,
+    time: 0,
+    stats: [
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN
+    ]
   }
 ];

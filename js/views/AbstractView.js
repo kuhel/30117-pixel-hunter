@@ -11,6 +11,7 @@ export default class AbstractView {
     if (!this._element) {
       this._element = document.createElement('div');
       this._element.innerHTML = this.getMarkup();
+      this.bindHandlers();
     }
     return this._element;
   }
