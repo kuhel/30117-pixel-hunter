@@ -1,11 +1,13 @@
 /**
  * Created by glebvorontsov on 05/12/16.
  */
-import {initialGame, hasLevel, setCurrentLevel, setLives, getLevel, setTime} from './game';
+import {initialGame, hasLevel, setCurrentLevel, setLives, getLevel, setTime, pushStatsResult, setFinalResult} from './game';
+import {STATS_TYPES, ANSWER_TIME} from './staticData';
 
-export default class GameModel {
+class GameModel {
   constructor(state = initialGame) {
     this._state = state;
+    this._initialState = initialGame;
   }
 
   get state() {
@@ -39,4 +41,32 @@ export default class GameModel {
   tick() {
     this._state = setTime(this._state, this._state.time + 1);
   }
+
+  resetTime() {
+    this._state = setTime(this._state, this._initialState.time);
+  }
+
+  isTimeRanOut() {
+    return this._state.time <= 0;
+  }
+
+  setStats(result) {
+    if (result && initialGame.time - this._state.time < ANSWER_TIME.FAST) {
+      this._state = pushStatsResult(this._state, STATS_TYPES.FAST, this._state.level);
+    } else if (result && initialGame.timer - this._state.timer > ANSWER_TIME.SLOW) {
+      this._state = pushStatsResult(this._state, STATS_TYPES.SLOW, this._state.level);
+    } else if (result) {
+      this._state = pushStatsResult(this._state, STATS_TYPES.CORRECT, this._state.level);
+    } else {
+      this._state = pushStatsResult(this._state, STATS_TYPES.WRONG, this._state.level);
+    }
+  }
+
+  setGameResult() {
+    const result = this.isDead();
+    this._state = setFinalResult(this._state, result);
+  }
+
 }
+
+export default new GameModel();

@@ -1,6 +1,5 @@
 import {introData} from './data/staticData';
-import intro from './templates/intro';
-import renderBlock from './modules/renderBlock';
+import renderIntro from './views/IntroScreen';
 
-renderBlock(intro(introData));
+renderIntro(introData);
 

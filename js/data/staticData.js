@@ -36,3 +36,22 @@ export const statsClassNames = {
   slow: 'stats__result--slow',
   unknown: 'stats__result--unknown'
 };
+
+export const STATS_TYPES = {
+  CORRECT: 'stats__result--correct',
+  WRONG: 'stats__result--wrong',
+  FAST: 'stats__result--fast',
+  SLOW: 'stats__result--slow',
+  UNKNOWN: 'stats__result--unknown'
+};
+
+export const ANSWER_TIME = {
+  TOTAL: 30,
+  FAST: 10,
+  SLOW: 20
+};
+
+export const GAME_RESULTS = {
+  WIN: 'Победа!',
+  LOSE: 'Проиграл('
+};

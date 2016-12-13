@@ -1,7 +1,8 @@
 /**
  * Created by glebvorontsov on 26/11/16.
  */
-import {statsClassNames} from './staticData';
+import {STATS_TYPES} from './staticData';
+
 export const headerData = {
   headerTimer: 'NN',
   lives: ['empty', 'full', 'full']
@@ -10,9 +11,21 @@ export const headerData = {
 export const gameData = {
   level: 0,
   lives: 3,
-  stats: [],
+  stats: [
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN,
+    STATS_TYPES.UNKNOWN
+  ],
   time: 0,
-  points: 0
+  points: 0,
+  forTheWin: false
 };
 
 export let gameLevels = [
@@ -50,7 +63,20 @@ export let gameLevels = [
         ]
       }
     ],
+    answer: ['photo', 'paint', 'photo'],
     time: 0,
+    stats: [
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN
+    ]
   },
   {
     gameTask: 'Угадай, фото или рисунок?',
@@ -71,7 +97,20 @@ export let gameLevels = [
         ]
       }
     ],
-    time: 0
+    answer: ['photo', 'paint'],
+    time: 0,
+    stats: [
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN
+    ]
   },
   {
     gameTask: 'Найдите рисунок среди изображений',
@@ -89,54 +128,50 @@ export let gameLevels = [
         gameAnswers: []
       }
     ],
-    time: 0
+    answer: 1,
+    time: 0,
+    stats: [
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN
+    ]
+  },
+  {
+    gameTask: 'Найдите рисунок среди изображений',
+    gameOptions: [
+      {
+        gamePic: 'http://placehold.it/304x455',
+        gameAnswers: []
+      },
+      {
+        gamePic: 'http://placehold.it/304x455',
+        gameAnswers: []
+      },
+      {
+        gamePic: 'http://placehold.it/304x455',
+        gameAnswers: []
+      }
+    ],
+    answer: 1,
+    time: 0,
+    stats: [
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN,
+      STATS_TYPES.UNKNOWN
+    ]
   }
-];
-
-
-export const ANSWER_TIME = {
-  TOTAL: 30,
-  FAST: 10,
-  SLOW: 20
-};
-
-export let allGameStats = [
-  [
-    statsClassNames.wrong,
-    statsClassNames.slow,
-    statsClassNames.fast,
-    statsClassNames.correct,
-    statsClassNames.unknown,
-    statsClassNames.unknown,
-    statsClassNames.unknown,
-    statsClassNames.unknown,
-    statsClassNames.unknown,
-    statsClassNames.unknown
-  ],
-
-  [
-    statsClassNames.wrong,
-    statsClassNames.slow,
-    statsClassNames.fast,
-    statsClassNames.correct,
-    statsClassNames.wrong,
-    statsClassNames.unknown,
-    statsClassNames.slow,
-    statsClassNames.unknown,
-    statsClassNames.fast,
-    statsClassNames.unknown
-  ],
-
-  [
-    statsClassNames.wrong,
-    statsClassNames.slow,
-    statsClassNames.fast,
-    statsClassNames.correct,
-    statsClassNames.wrong,
-    statsClassNames.unknown,
-    statsClassNames.slow,
-    statsClassNames.unknown,
-    statsClassNames.fast,
-    statsClassNames.unknown
-  ]
 ];
