@@ -3,8 +3,7 @@
  */
 import renderBlock from '../modules/renderBlock';
 import AbstractView from './AbstractView';
-import renderGreetingScreen from './GreetingScreen.js';
-import {greetingData} from '../data/staticData';
+import Application from '../Application';
 
 class IntroScreen extends AbstractView {
   constructor(data) {
@@ -22,7 +21,7 @@ class IntroScreen extends AbstractView {
 
   bindHandlers() {
     this.element.querySelector('.intro__asterisk').addEventListener('click', () => {
-      renderGreetingScreen(greetingData);
+      Application.showGreeting();
     });
   }
 }

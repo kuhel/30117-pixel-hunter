@@ -3,6 +3,7 @@
  */
 
 import AbstractView from '../AbstractView';
+import Application from '../../Application';
 
 export default class HeaderComponent extends AbstractView {
   constructor(gameData) {
@@ -31,7 +32,7 @@ export default class HeaderComponent extends AbstractView {
   }
 
   onClick() {
-    // TODO
+    Application.showIntro();
   }
 
   getMarkup() {

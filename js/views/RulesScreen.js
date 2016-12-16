@@ -3,7 +3,7 @@
  */
 import renderBlock from '../modules/renderBlock';
 import AbstractView from './AbstractView';
-import renderGameScreen from './GameScreen.js';
+import Application from '../Application';
 
 class RulesScreen extends AbstractView {
   constructor(data) {
@@ -35,10 +35,11 @@ class RulesScreen extends AbstractView {
   bindHandlers() {
     const rulesSubmit = this.element.querySelector('.rules__button');
     const rulesInput = this.element.querySelector('.rules__input');
+    const back = this.element.querySelector('.back');
 
     rulesSubmit.addEventListener('click', (e) => {
       e.preventDefault();
-      renderBlock(renderGameScreen());
+      Application.showGame();
     });
     rulesInput.addEventListener('change', (e) => {
       if (e.target.value) {
@@ -48,6 +49,8 @@ class RulesScreen extends AbstractView {
       }
     });
     rulesInput.addEventListener('keydown', (e) => rulesSubmit.removeAttribute('disabled'));
+
+    back.addEventListener('click', () => Application.showIntro());
   }
 }
 

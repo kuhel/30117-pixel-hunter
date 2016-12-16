@@ -3,8 +3,7 @@
  */
 import renderBlock from '../modules/renderBlock';
 import AbstractView from './AbstractView';
-import renderRuleScreen from './RulesScreen.js';
-import {rulesData} from '../data/staticData';
+import Application from '../Application';
 
 class GreetingScreen extends AbstractView {
   constructor(data) {
@@ -27,7 +26,7 @@ class GreetingScreen extends AbstractView {
 
   bindHandlers() {
     this.element.querySelector('.greeting__continue').addEventListener('click', () => {
-      renderRuleScreen(rulesData);
+      Application.showRules();
     });
   }
 }
