@@ -73,7 +73,8 @@
     left: 30px;
   }
 
-  &--paint {
+  &--paint,
+  &--painting {
     input + span {
       background-image: url("../img/paint_big.png");
     }
@@ -92,13 +93,13 @@
     top: 208px;
   }
 
-  .game__answer--photo {
-    left: -100px
-  }
+  // .game__answer--photo {
+  //   left: -100px
+  // }
 
-  .game__answer--paint {
-    right: -100px;
-  }
+  // .game__answer--paint {
+  //   right: -100px;
+  // }
 }
 
 .game__content--triple .game__option {

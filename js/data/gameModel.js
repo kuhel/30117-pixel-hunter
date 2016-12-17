@@ -1,15 +1,14 @@
 /**
  * Created by glebvorontsov on 05/12/16.
  */
-import {initialGame, hasLevel, setCurrentLevel, setLives, getLevel, setTime, pushStatsResult, setFinalResult} from './game';
+import {initialGame, hasLevel, setCurrentLevel, getLevel, setLives, setTime, pushStatsResult, setFinalResult} from './game';
 import {STATS_TYPES, ANSWER_TIME} from './staticData';
 
 class GameModel {
   constructor(state = initialGame) {
     this._state = state;
     this._initialState = initialGame;
-  }
-
+  }  
   get state() {
     return this._state;
   }
@@ -22,6 +21,10 @@ class GameModel {
     this._state = setCurrentLevel(this._state, this._state.level + 1);
   }
 
+  getCurrentLevel() {
+    return getLevel(this._state.level);
+  }
+
   die() {
     this._state = setLives(this._state, this._state.lives - 1);
   }
@@ -31,11 +34,7 @@ class GameModel {
   }
 
   isDead() {
-    return this._state.lives <= 0;
-  }
-
-  getCurrentLevel() {
-    return getLevel(this._state.level);
+    return this._state.lives === 0;
   }
 
   tick() {
@@ -63,7 +62,7 @@ class GameModel {
   }
 
   setGameResult() {
-    const result = this.isDead();
+    const result = !this.isDead();
     this.resetTime();
     this._state = setFinalResult(this._state, result);
   }

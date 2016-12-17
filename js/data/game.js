@@ -1,8 +1,27 @@
 /**
  * Created by glebvorontsov on 05/12/16.
  */
-import {gameLevels} from './gameData';
+import {gameLevels} from './gameData'
 import {ANSWER_TIME, STATS_TYPES} from './staticData';
+import 'whatwg-fetch';
+
+const API = 'https://intensive-ecmascript-server-tudvgacdag.now.sh/pixel-hunter/questions';
+
+let _gameLevels = null;
+
+const checkStatus = (response) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    throw new Error(`${response.status}: ${response.statusText}`);
+  }
+};
+
+window.fetch(API)
+    .then(checkStatus)
+    .then((response) => response.json())
+    .then((data) => _gameLevels= data)
+    .catch(console.warn('Error on API loading'));
 
 export const initialGame = {
   level: 0,

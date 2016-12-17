@@ -35,10 +35,10 @@ class StatsScreen extends AbstractView {
     back.addEventListener('click', () => Application.showIntro());
   }
 
-  get levelStats() {
+  levelStats(stats) {
     return `
     <ul class="stats">
-      ${this._data.stats.map((item) => `<li class="stats__result stats__result--${item}"></li>`).join('\n')}
+      <li class="stats__result ${stats}"></li>
     </ul>`;
   }
 
@@ -99,18 +99,20 @@ class StatsScreen extends AbstractView {
 
   get allGameStats() {
     if (this._data.forTheWin) {
-      return `
+      let _top = this._data.stats.slice().reverse().map((item, i) => `
       <table class="result__table">
         <tr>
-          <td class="result__number">1.</td>
+          <td class="result__number">${i+1}.</td>
           <td colspan="2">
-            ${this.levelStats}
+            ${this.levelStats(this._data.stats[i])}
           </td>
           <td class="result__points">×&nbsp;100</td>
           <td class="result__total">
-            ${this.resolveStats.levelPoints}
+            ${this.resolveStats.levelResult(i)}
           </td>
-        </tr>
+        </tr>`).join('\n');
+        return `
+        ${_top}
         ${this.fastAnswers}
         ${this.livesBonus}
         ${this.slowAnswers}
@@ -119,7 +121,7 @@ class StatsScreen extends AbstractView {
             ${this.resolveStats.pointsTotal}
           </td>
         </tr>
-      </table>`;
+      </table>`
     } else {
       return `
       <table class="result__table">
@@ -131,7 +133,7 @@ class StatsScreen extends AbstractView {
           <td class="result__total"></td>
           <td class="result__total  result__total--final">${GAME_RESULTS.LOSE}</td>
         </tr>
-      </table>`;
+      </table>`
     }
   }
 

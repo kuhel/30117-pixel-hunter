@@ -7,6 +7,7 @@ import QuestionView from './QuestionView';
 import {rulesData} from '../data/staticData';
 import renderRulesScreen from './RulesScreen';
 import statsScreenRender from './StatsScreen';
+import {AnswerType, QuestionType} from '../data/staticData';
 
 
 class GamePresenter {
@@ -77,12 +78,35 @@ class GamePresenter {
     statsScreenRender(GameModel.state);
   }
 
-  onAnswer(result) {
+  checkAnswer(answer) {
+    const question = GameModel.getCurrentLevel();
+    switch (question.type) {
+      case QuestionType.TINDER_LIKE:
+        return answer === question.answers[0].type;
+      case QuestionType.TWO_OF_TWO:
+        return answer[0] === question.answers[0].type && answer[1] === question.answers[1].type;
+      case QuestionType.ONE_OF_THREE:
+        let _answer = null;
+        if (question.answers[0].type === question.answers[1].type) {
+          _answer = 2;
+        } else if (question.answers[0].type === question.answers[2].type) {
+          _answer = 1;
+        } else {
+          _answer = 0;
+        }
+        return question.answers[answer].answer === question.answers[_answer].answer;
+      default:
+        throw new Error('Something wrong with answer');
+    }
+  }
+
+  onAnswer(answer) {
     this.stopGame();
-    if (!result) {
+    let isAnswer = this.checkAnswer(answer);
+    if (!isAnswer) {
       GameModel.die();
     }
-    GameModel.setStats(result);
+    GameModel.setStats(isAnswer);
     this.changeView();
   }
 
