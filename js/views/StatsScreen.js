@@ -3,25 +3,36 @@
  */
 import renderBlock from '../modules/renderBlock';
 import AbstractView from './AbstractView';
-import HeaderComponent from './components/HeaderComponent';
 import {GAME_RESULTS} from '../data/staticData';
 import ResolveStats from '../data/ResolveStats';
+import Application from '../Application';
 
 class StatsScreen extends AbstractView {
   constructor(data) {
     super();
     this._data = data;
-    this.header = new HeaderComponent(this._data);
     this.resolveStats = new ResolveStats(this._data);
   }
 
   getMarkup() {
     return `
-    ${this.header.getMarkup()}
+    <header class="header">
+      <div class="header__back">
+        <span class="back">
+          <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
+          <img src="img/logo_small.png" width="101" height="44">
+        </span>
+      </div>
+    </header>
     <div class="result">
       <h1>${this._data.forTheWin ? GAME_RESULTS.WIN : GAME_RESULTS.LOSE}</h1>
       ${this.allGameStats}
     </div>`;
+  }
+
+  bindHandlers() {
+    const back = this.element.querySelector('.back');
+    back.addEventListener('click', () => Application.showIntro());
   }
 
   get levelStats() {

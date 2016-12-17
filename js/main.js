@@ -1,5 +1,4 @@
-import {introData} from './data/staticData';
-import renderIntro from './views/IntroScreen';
+import Application from './Application';
 
-renderIntro(introData);
+Application.showIntro();
 

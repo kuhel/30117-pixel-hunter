@@ -64,6 +64,7 @@ class GameModel {
 
   setGameResult() {
     const result = this.isDead();
+    this.resetTime();
     this._state = setFinalResult(this._state, result);
   }
 
