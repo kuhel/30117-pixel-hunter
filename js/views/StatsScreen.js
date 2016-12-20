@@ -3,7 +3,7 @@
  */
 import renderBlock from '../modules/renderBlock';
 import AbstractView from './AbstractView';
-import {GAME_RESULTS} from '../data/staticData';
+import {GAME_RESULTS, STATS_TYPES} from '../data/staticData';
 import ResolveStats from '../data/ResolveStats';
 import Application from '../Application';
 
@@ -35,10 +35,17 @@ class StatsScreen extends AbstractView {
     back.addEventListener('click', () => Application.showIntro());
   }
 
-  levelStats(stats) {
+  levelStats(level) {
+    let _statsMarkup = this._data.stats.map((stat, i) => {
+      if (level === i) {
+        return `<li class="stats__result ${stat}"></li>`;
+      } else {
+        return `<li class="stats__result ${STATS_TYPES.UNKNOWN}"></li>`;
+      }
+    });
     return `
     <ul class="stats">
-      <li class="stats__result ${stats}"></li>
+      ${_statsMarkup}
     </ul>`;
   }
 
@@ -102,16 +109,16 @@ class StatsScreen extends AbstractView {
       let _top = this._data.stats.slice().reverse().map((item, i) => `
       <table class="result__table">
         <tr>
-          <td class="result__number">${i+1}.</td>
+          <td class="result__number">${i + 1}.</td>
           <td colspan="2">
-            ${this.levelStats(this._data.stats[i])}
+            ${this.levelStats(i)}
           </td>
           <td class="result__points">×&nbsp;100</td>
           <td class="result__total">
             ${this.resolveStats.levelResult(i)}
           </td>
         </tr>`).join('\n');
-        return `
+      return `
         ${_top}
         ${this.fastAnswers}
         ${this.livesBonus}
@@ -121,7 +128,7 @@ class StatsScreen extends AbstractView {
             ${this.resolveStats.pointsTotal}
           </td>
         </tr>
-      </table>`
+      </table>`;
     } else {
       return `
       <table class="result__table">
@@ -133,7 +140,7 @@ class StatsScreen extends AbstractView {
           <td class="result__total"></td>
           <td class="result__total  result__total--final">${GAME_RESULTS.LOSE}</td>
         </tr>
-      </table>`
+      </table>`;
     }
   }
 

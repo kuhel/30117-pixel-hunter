@@ -4,7 +4,7 @@
 import {AnswerType, AnswerTypeName} from '../data/staticData';
 import AbstractView from './AbstractView';
 import StatsComponent from '../views/components/StatsComponent';
-import imageLoader from '../image-loader/image-loader'
+import imageLoader from '../image-loader/image-loader';
 
 export default class OneQuestionView extends AbstractView {
   constructor(question, stats) {
@@ -47,7 +47,10 @@ export default class OneQuestionView extends AbstractView {
   bindHandlers() {
     const answerBtn = this.element.querySelectorAll('.game__answer');
     [].forEach.call(answerBtn, (item) => {
-      item.addEventListener('click', (evt) => this._onAnswer(item.querySelector('input').value));
+      item.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        this._onAnswer(evt.currentTarget.querySelector('input[type=radio]').value);
+      });
     });
   }
 

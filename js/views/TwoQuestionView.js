@@ -4,6 +4,7 @@
 import {AnswerType, AnswerTypeName} from '../data/staticData';
 import AbstractView from './AbstractView';
 import StatsComponent from '../views/components/StatsComponent';
+import imageLoader from '../image-loader/image-loader';
 
 export default class TwoQuestionView extends AbstractView {
   constructor(question, stats) {
@@ -11,6 +12,15 @@ export default class TwoQuestionView extends AbstractView {
     this._question = question;
     this._stats = stats;
     this.statsView = new StatsComponent(this._stats);
+  }
+
+  get element() {
+    if (!this._element) {
+      this._element = document.createElement('div');
+      this._element.innerHTML = this.getMarkup();
+      this.bindHandlers();
+    }
+    return this._element;
   }
 
   set onAnswer(handler) {
@@ -24,6 +34,7 @@ export default class TwoQuestionView extends AbstractView {
         <form class="game__content">
           ${this._question.answers.map((option, i) => `
           <div class="game__option">
+            ${imageLoader(option.image)}
             <img src="${option.image.url}" alt="Option ${i + 1}" width="${option.image.width}" height="${option.image.height}">
             <label class="game__answer game__answer--${AnswerType.PHOTO}">
               <input name="question${i + 1}" type="radio" value="${AnswerType.PHOTO}">

@@ -4,7 +4,7 @@
 export default class AbstractView {
 
 /**
- * Bind event listeners. By default there is nothing to bind
+ * Lazy element getter
  * @return {HTMLElement}
  */
   get element() {

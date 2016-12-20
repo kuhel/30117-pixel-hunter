@@ -7,13 +7,14 @@ import QuestionView from './QuestionView';
 import {rulesData} from '../data/staticData';
 import renderRulesScreen from './RulesScreen';
 import statsScreenRender from './StatsScreen';
-import {AnswerType, QuestionType} from '../data/staticData';
+import {QuestionType} from '../data/staticData';
 
 
 class GamePresenter {
-  constructor() {
-    this.header = new HeaderComponent(GameModel.state);
-    this.content = new QuestionView(GameModel.getCurrentLevel(), GameModel.state);
+  constructor(model) {
+    this.model = model;
+    this.header = new HeaderComponent(this.model.state);
+    this.content = new QuestionView(this.model.getCurrentLevel(), this.model.state);
 
     this.root = document.createElement('div');
     this.root.appendChild(this.header.element);
@@ -24,14 +25,15 @@ class GamePresenter {
 
   startGame() {
     this.changeQuestion();
-    GameModel.resetTime();
+    this.model.resetTime();
 
     this.intervalId = setInterval(() => {
-      GameModel.tick();
+      this.model.tick();
       this.updateHeader();
-      if (GameModel.isTimeRanOut()) {
+      if (this.model.isTimeRanOut()) {
         this.stopGame();
-        GameModel.die();
+        this.model.die();
+        this.model.setStats(false);
         this.changeView();
       }
     }, 1000);
@@ -39,7 +41,7 @@ class GamePresenter {
 
   restart(continueGame) {
     if (!continueGame) {
-      GameModel.restart();
+      this.model.restart();
     }
     this.startGame();
   }
@@ -55,16 +57,16 @@ class GamePresenter {
 
   changeQuestion() {
     this.updateHeader();
-    const question = new QuestionView(GameModel.getCurrentLevel(), GameModel.state);
+    const question = new QuestionView(this.model.getCurrentLevel(), this.model.state);
     question.onAnswer = this.onAnswer.bind(this);
     this.changeContentView(question);
   }
 
   changeView() {
-    if (GameModel.isDead() || !GameModel.hasNextLevel()) {
+    if (this.model.isDead() || !this.model.hasNextLevel()) {
       this.exitGame();
     } else {
-      GameModel.nextLevel();
+      this.model.nextLevel();
       this.startGame();
     }
   }
@@ -74,12 +76,12 @@ class GamePresenter {
   }
 
   exitGame() {
-    GameModel.setGameResult();
-    statsScreenRender(GameModel.state);
+    this.model.setGameResult();
+    statsScreenRender(this.model.state);
   }
 
   checkAnswer(answer) {
-    const question = GameModel.getCurrentLevel();
+    const question = this.model.getCurrentLevel();
     switch (question.type) {
       case QuestionType.TINDER_LIKE:
         return answer === question.answers[0].type;
@@ -94,7 +96,7 @@ class GamePresenter {
         } else {
           _answer = 0;
         }
-        return question.answers[answer].answer === question.answers[_answer].answer;
+        return question.answers[answer].type === question.answers[_answer].type;
       default:
         throw new Error('Something wrong with answer');
     }
@@ -104,9 +106,9 @@ class GamePresenter {
     this.stopGame();
     let isAnswer = this.checkAnswer(answer);
     if (!isAnswer) {
-      GameModel.die();
+      this.model.die();
     }
-    GameModel.setStats(isAnswer);
+    this.model.setStats(isAnswer);
     this.changeView();
   }
 
@@ -116,16 +118,15 @@ class GamePresenter {
   }
 
   updateHeader() {
-    const header = new HeaderComponent(GameModel.state);
+    const header = new HeaderComponent(this.model.state);
     header.onBackClick = this.onBackClick;
     this.root.replaceChild(header.element, this.header.element);
     this.header = header;
   }
 }
 
-const game = new GamePresenter();
-
-export default () => {
+export default (levels) => {
+  const game = new GamePresenter(new GameModel(levels));
   game.restart(false);
   return game.root;
 };
