@@ -7,7 +7,10 @@ import GreetingScreen from './views/GreetingScreen';
 import RulesScreen from './views/RulesScreen';
 import GameScreen from './views/GameScreen';
 import StatsScreen from './views/StatsScreen';
+import ErrorScreen from './views/ErrorScreen';
 import {introData, greetingData, rulesData} from './data/staticData';
+
+let levels = null;
 
 export default class Application {
 
@@ -27,13 +30,22 @@ export default class Application {
   }
 
   static showGame() {
-    const game = renderBlock(new GameScreen());
+    const game = renderBlock(new GameScreen(levels));
     return game;
   }
 
   static showStats(stats) {
     const _stats = new StatsScreen(stats);
     return _stats;
+  }
+
+  static showError(error) {
+    const _error = new ErrorScreen(error);
+    return _error;
+  }
+
+  static set data(data) {
+    levels = data;
   }
 
 }

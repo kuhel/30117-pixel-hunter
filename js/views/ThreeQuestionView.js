@@ -19,11 +19,11 @@ export default class ThreeQuestionView extends AbstractView {
   getMarkup() {
     return `
     <div class="game">
-      <p class="game__task">${this._question.gameTask}</p>
+      <p class="game__task">${this._question.question}</p>
       <form class="game__content">
-        ${this._question.gameOptions.map((option, i) => `
+        ${this._question.answers.map((option, i) => `
           <div class="game__option">
-            <img src="${option.gamePic}" alt="Option ${i + 1}" data-answer="${i + 1}" width="304" height="455">
+            <img src="${option.image.url}" alt="Option ${i + 1}" data-answer="${i}" width="${option.image.width}" height="${option.image.height}">
           </div>`).join('\n')}
         </form>
       ${this.statsView.getMarkup()}
@@ -34,12 +34,8 @@ export default class ThreeQuestionView extends AbstractView {
     const answerBtns = this.element.querySelectorAll('.game__option');
     [].forEach.call(answerBtns, (item) => {
       item.addEventListener('click', (evt) => {
-        this._onAnswer(this.isAnswer(evt.currentTarget));
+        this._onAnswer(evt.currentTarget.children[0].dataset.answer);
       });
     });
-  }
-
-  isAnswer(node) {
-    return node.children[0].dataset.answer === this._question.answer;
   }
 }

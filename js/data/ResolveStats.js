@@ -8,6 +8,10 @@ export default class ResolveStats {
     this._state = state;
   }
 
+  levelResult(num) {
+    return this._state.stats[num] === STATS_TYPES.WRONG ? 0 : 100;
+  }
+
   get levelPoints() {
     return this._state.stats.reduce((prev, cur) => {
       let result = cur === STATS_TYPES.WRONG ? 0 : 100;

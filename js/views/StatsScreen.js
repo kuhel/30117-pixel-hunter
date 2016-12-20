@@ -3,7 +3,7 @@
  */
 import renderBlock from '../modules/renderBlock';
 import AbstractView from './AbstractView';
-import {GAME_RESULTS} from '../data/staticData';
+import {GAME_RESULTS, STATS_TYPES} from '../data/staticData';
 import ResolveStats from '../data/ResolveStats';
 import Application from '../Application';
 
@@ -35,10 +35,17 @@ class StatsScreen extends AbstractView {
     back.addEventListener('click', () => Application.showIntro());
   }
 
-  get levelStats() {
+  levelStats(level) {
+    let _statsMarkup = this._data.stats.map((stat, i) => {
+      if (level === i) {
+        return `<li class="stats__result ${stat}"></li>`;
+      } else {
+        return `<li class="stats__result ${STATS_TYPES.UNKNOWN}"></li>`;
+      }
+    });
     return `
     <ul class="stats">
-      ${this._data.stats.map((item) => `<li class="stats__result stats__result--${item}"></li>`).join('\n')}
+      ${_statsMarkup}
     </ul>`;
   }
 
@@ -99,18 +106,20 @@ class StatsScreen extends AbstractView {
 
   get allGameStats() {
     if (this._data.forTheWin) {
-      return `
+      let _top = this._data.stats.slice().reverse().map((item, i) => `
       <table class="result__table">
         <tr>
-          <td class="result__number">1.</td>
+          <td class="result__number">${i + 1}.</td>
           <td colspan="2">
-            ${this.levelStats}
+            ${this.levelStats(i)}
           </td>
           <td class="result__points">×&nbsp;100</td>
           <td class="result__total">
-            ${this.resolveStats.levelPoints}
+            ${this.resolveStats.levelResult(i)}
           </td>
-        </tr>
+        </tr>`).join('\n');
+      return `
+        ${_top}
         ${this.fastAnswers}
         ${this.livesBonus}
         ${this.slowAnswers}
