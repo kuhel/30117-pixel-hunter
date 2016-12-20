@@ -1,4 +1,4 @@
-import AbstractView from '../view';
+import AbstractView from './AbstractView';
 
 class ErrorScreen extends AbstractView {
 
