@@ -4,9 +4,9 @@
 import GameModel from '../data/GameModel';
 import HeaderComponent from './components/HeaderComponent';
 import QuestionView from './QuestionView';
+import Application from '../Application';
 import {rulesData} from '../data/staticData';
 import renderRulesScreen from './RulesScreen';
-import statsScreenRender from './StatsScreen';
 import {QuestionType} from '../data/staticData';
 
 
@@ -32,7 +32,9 @@ class GamePresenter {
       this.updateHeader();
       if (this.model.isTimeRanOut()) {
         this.stopGame();
-        this.model.die();
+        if (this.model.isDead()) {
+          this.model.die();
+        }
         this.model.setStats(false);
         this.changeView();
       }
@@ -76,8 +78,7 @@ class GamePresenter {
   }
 
   exitGame() {
-    this.model.setGameResult();
-    statsScreenRender(this.model.state);
+    Application.saveGame(this.model.state);
   }
 
   checkAnswer(answer) {
@@ -125,8 +126,8 @@ class GamePresenter {
   }
 }
 
-export default (levels) => {
-  const game = new GamePresenter(new GameModel(levels));
-  game.restart(false);
+export default (levels, user) => {
+  const game = new GamePresenter(new GameModel(levels, user));
+  game.restart(true);
   return game.root;
 };

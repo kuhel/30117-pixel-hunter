@@ -39,7 +39,7 @@ class RulesScreen extends AbstractView {
 
     rulesSubmit.addEventListener('click', (e) => {
       e.preventDefault();
-      Application.showGame();
+      Application.showGame(rulesInput.value);
     });
     rulesInput.addEventListener('change', (e) => {
       if (e.target.value) {
