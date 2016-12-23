@@ -24,6 +24,7 @@ class Game {
       ],
       time: 0,
       points: 0,
+      user: '',
       forTheWin: false
     };
     return _initialGame;

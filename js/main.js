@@ -3,16 +3,8 @@ import 'whatwg-fetch';
 
 const API = 'https://intensive-ecmascript-server-tudvgacdag.now.sh/pixel-hunter/questions';
 
-const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
-
 window.fetch(API)
-    .then(checkStatus)
+    .then((response) => Application.checkResponseStatus(response))
     .then((response) => response.json())
     .then((data) => {
       Application.data = data;

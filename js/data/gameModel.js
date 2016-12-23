@@ -5,9 +5,10 @@ import Game from './game';
 import {STATS_TYPES, ANSWER_TIME} from './staticData';
 
 export default class GameModel {
-  constructor(data, state = Game.initialGame) {
+  constructor(data, username, state = Game.initialGame) {
     this._data = data;
     this._state = state;
+    this._state.user = username;
     this._initialState = Game.initialGame;
   }
 
@@ -28,7 +29,9 @@ export default class GameModel {
   }
 
   die() {
-    this._state = Game.setLives(this._state, this._state.lives - 1);
+    if (!this.isDead()) {
+      this._state = Game.setLives(this._state, this._state.lives - 1);
+    }
   }
 
   restart() {

@@ -2,12 +2,6 @@
  * Created by glebvorontsov on 30/11/16.
  */
 
-export const QuestionType = {
-  TWO_OF_TWO: 'two-of-two',
-  TINDER_LIKE: 'tinder-like',
-  ONE_OF_THREE: 'one-of-three'
-};
-
 export const AnswerType = {
   PAINTING: 'painting',
   PHOTO: 'photo'
@@ -46,20 +40,12 @@ export const greetingData = {
         Помни, главное — смотреть очень внимательно.`
 };
 
-export const statsClassNames = {
-  correct: 'stats__result--correct',
-  wrong: 'stats__result--wrong',
-  fast: 'stats__result--fast',
-  slow: 'stats__result--slow',
-  unknown: 'stats__result--unknown'
-};
-
 export const STATS_TYPES = {
-  CORRECT: 'stats__result--correct',
-  WRONG: 'stats__result--wrong',
-  FAST: 'stats__result--fast',
-  SLOW: 'stats__result--slow',
-  UNKNOWN: 'stats__result--unknown'
+  CORRECT: 'correct',
+  WRONG: 'wrong',
+  FAST: 'fast',
+  SLOW: 'slow',
+  UNKNOWN: 'unknown'
 };
 
 export const ANSWER_TIME = {

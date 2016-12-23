@@ -19,7 +19,7 @@ export default class StatsComponent extends AbstractView {
     return `
     <div class="stats">
       <ul class="stats">
-        ${this.stats.map((stat) => `<li class="stats__result ${stat}"></li>`).join('\n')}
+        ${this.stats.map((stat) => `<li class="stats__result stats__result--${stat}"></li>`).join('\n')}
       </ul>
     </div>`;
   }
