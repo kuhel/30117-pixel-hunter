@@ -116,20 +116,26 @@ class StatsScreen extends AbstractView {
     const _play = play;
     const resolveStats = new ResolveStats(_play);
     const date = new Date(_play.date);
-    let head = `<h1>${_play.lives > 0 ? GAME_RESULTS.WIN : GAME_RESULTS.LOSE} — ${date.toLocaleDateString()}</h1>`;
+    let head = `<h1>${_play.lives > 0 ? GAME_RESULTS.WIN : GAME_RESULTS.LOSE} — ${date.toLocaleDateString()}</h1>
+    <table class="result__table">`;
 
-    let _top = _play.stats.slice().reverse().map((item, i) => `
-    <table class="result__table">
-      <tr>
-        <td class="result__number">${i + 1}.</td>
-        <td colspan="2">
-          ${this.levelStats(_play, i)}
-        </td>
-        <td class="result__points">×&nbsp;100</td>
-        <td class="result__total">
-          ${resolveStats.levelResult(i)}
-        </td>
-      </tr>`).join('\n');
+    let _top = _play.stats.slice().map((item, i) => {
+      if (item !== STATS_TYPES.UNKNOWN) {
+        return `
+        <tr>
+          <td class="result__number">${i + 1}.</td>
+          <td colspan="2">
+            ${this.levelStats(_play, i)}
+          </td>
+          <td class="result__points">×&nbsp;100</td>
+          <td class="result__total">
+            ${resolveStats.levelResult(i)}
+          </td>
+        </tr>`;
+      } else {
+        return '';
+      }
+    });
 
     let fastAnswers = this.fastAnswers(_play);
     let liveBonus = this.livesBonus(_play);
