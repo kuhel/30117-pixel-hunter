@@ -32,7 +32,7 @@ class GamePresenter {
       this.updateHeader();
       if (this.model.isTimeRanOut()) {
         this.stopGame();
-        if (this.model.isDead()) {
+        if (!this.model.isDead()) {
           this.model.die();
         }
         this.model.setStats(false);

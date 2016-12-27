@@ -9,12 +9,19 @@ export default class ResolveStats {
   }
 
   levelResult(num) {
-    return this._level.stats[num] === STATS_TYPES.WRONG ? 0 : 100;
+    let result = 0;
+    if (this._level.stats[num] !== STATS_TYPES.WRONG && this._level.stats[num] !== STATS_TYPES.UNKNOWN) {
+      result = result + 100;
+    }
+    return result;
   }
 
   get levelPoints() {
     return this._level.stats.reduce((prev, cur) => {
-      let result = cur === STATS_TYPES.WRONG ? 0 : 100;
+      let result = 0;
+      if (cur !== STATS_TYPES.WRONG && cur !== STATS_TYPES.UNKNOWN) {
+        result = result + 100;
+      }
       return prev + result;
     }, 0);
   }

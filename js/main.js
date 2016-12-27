@@ -4,6 +4,7 @@ import 'whatwg-fetch';
 const API = 'https://intensive-ecmascript-server-tudvgacdag.now.sh/pixel-hunter/questions';
 
 window.fetch(API)
+    .then(Application.showLoading())
     .then((response) => Application.checkResponseStatus(response))
     .then((response) => response.json())
     .then((data) => {
